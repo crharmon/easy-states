@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
  */
 package org.jeasy.states.core;
 
-import org.jeasy.states.api.Event;
+import org.jeasy.states.api.AbstractEvent;
 import org.jeasy.states.api.FiniteStateMachine;
 import org.jeasy.states.api.State;
 import org.jeasy.states.api.Transition;
@@ -33,14 +33,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
-
 public class TransitionDefinitionValidatorTest {
 
     private TransitionDefinitionValidator transitionDefinitionValidator = new TransitionDefinitionValidator();
 
     @Test(expected = IllegalArgumentException.class)
-    public void sourceStateMustBeDefined() throws Exception {
+    public void sourceStateMustBeDefined() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -62,7 +60,7 @@ public class TransitionDefinitionValidatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void sourceStateMustBeDeclaredInFSMStates() throws Exception {
+    public void sourceStateMustBeDeclaredInFSMStates() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -86,7 +84,7 @@ public class TransitionDefinitionValidatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void targetStateMustBeDefined() throws Exception {
+    public void targetStateMustBeDefined() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -108,7 +106,7 @@ public class TransitionDefinitionValidatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void targetStateMustBeDeclaredInFSMStates() throws Exception {
+    public void targetStateMustBeDeclaredInFSMStates() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -131,6 +129,6 @@ public class TransitionDefinitionValidatorTest {
         // expected exception
     }
 
-    private class DummyEvent extends Event { }
+    private static class DummyEvent extends AbstractEvent { }
 
 }

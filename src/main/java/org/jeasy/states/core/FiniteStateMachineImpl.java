@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,10 @@ final class FiniteStateMachineImpl implements FiniteStateMachine {
     private static final Logger LOGGER = Logger.getLogger(FiniteStateMachineImpl.class.getSimpleName());
 
     private State currentState;
-    private State initialState;
-    private Set<State> finalStates;
-    private Set<State> states;
-    private Set<Transition> transitions;
+    private final State initialState;
+    private final Set<State> finalStates;
+    private final Set<State> states;
+    private final Set<Transition> transitions;
     private Event lastEvent;
     private Transition lastTransition;
 
@@ -54,6 +54,7 @@ final class FiniteStateMachineImpl implements FiniteStateMachine {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public final synchronized State fire(final Event event) throws FiniteStateMachineException {
 
         if (!finalStates.isEmpty() && finalStates.contains(currentState)) {

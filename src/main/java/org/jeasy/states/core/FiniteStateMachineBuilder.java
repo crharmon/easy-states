@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,11 @@ import org.jeasy.states.api.FiniteStateMachine;
 import org.jeasy.states.api.State;
 import org.jeasy.states.api.Transition;
 
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * FSM builder : this class is the main entry point to build FSM instances.
@@ -37,9 +41,22 @@ import java.util.Set;
  */
 public class FiniteStateMachineBuilder {
 
-    private FiniteStateMachineImpl finiteStateMachine;
-    private FiniteStateMachineDefinitionValidator finiteStateMachineDefinitionValidator;
-    private TransitionDefinitionValidator transitionDefinitionValidator;
+    private static final Logger LOGGER = Logger.getLogger(FiniteStateMachineBuilder.class.getName());
+
+    static {
+        try {
+            if (System.getProperty("java.util.logging.config.file") == null &&
+                    System.getProperty("java.util.logging.config.class") == null) {
+                LogManager.getLogManager().readConfiguration(FiniteStateMachineBuilder.class.getResourceAsStream("/logging.properties"));
+            }
+        } catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Unable to load log configuration file", e);
+        }
+    }
+
+    private final FiniteStateMachineImpl finiteStateMachine;
+    private final FiniteStateMachineDefinitionValidator finiteStateMachineDefinitionValidator;
+    private final TransitionDefinitionValidator transitionDefinitionValidator;
 
     /**
      * Create a new {@link FiniteStateMachineBuilder}.

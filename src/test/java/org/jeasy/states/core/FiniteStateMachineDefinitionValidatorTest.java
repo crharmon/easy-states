@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
  */
 package org.jeasy.states.core;
 
-import org.jeasy.states.api.Event;
+import org.jeasy.states.api.AbstractEvent;
 import org.jeasy.states.api.FiniteStateMachine;
 import org.jeasy.states.api.State;
 import org.jeasy.states.api.Transition;
@@ -40,7 +40,7 @@ public class FiniteStateMachineDefinitionValidatorTest {
     private FiniteStateMachineDefinitionValidator validator = new FiniteStateMachineDefinitionValidator();
 
     @Test(expected = IllegalStateException.class)
-    public void whenInitialStateDoesNotBelongToMachineStates_thenShouldThrowIllegalStateException() throws Exception {
+    public void whenInitialStateDoesNotBelongToMachineStates_thenShouldThrowIllegalStateException() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -56,7 +56,7 @@ public class FiniteStateMachineDefinitionValidatorTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void whenFinalStateDoesNotBelongToMachineStates_thenShouldThrowIllegalStateException() throws Exception {
+    public void whenFinalStateDoesNotBelongToMachineStates_thenShouldThrowIllegalStateException() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -74,7 +74,7 @@ public class FiniteStateMachineDefinitionValidatorTest {
     }
 
     @Test
-    public void whenRegisterTwoTransitionsWithSameSourceStateAndEventType_thenOnlyTheLatestOneShouldBeRegistered() throws Exception {
+    public void whenRegisterTwoTransitionsWithSameSourceStateAndEventType_thenOnlyTheLatestOneShouldBeRegistered() {
         // given
         State s1 = new State("s1");
         State s2 = new State("s2");
@@ -103,6 +103,6 @@ public class FiniteStateMachineDefinitionValidatorTest {
         assertThat(finiteStateMachine.getTransitions()).containsOnly(t2); // transitions are unique according to source state and event type
     }
 
-    private class DummyEvent extends Event { }
+    private static class DummyEvent extends AbstractEvent { }
 
 }

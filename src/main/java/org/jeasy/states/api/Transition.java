@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ public interface Transition  {
      * Return fired event type upon which the transition should be made.
      * @return Event type class
      */
-    Class getEventType();
+    Class<? extends Event> getEventType();
 
     /**
      * Return event handler to execute when an event is fired.

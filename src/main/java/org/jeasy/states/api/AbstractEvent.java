@@ -21,17 +21,46 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.jeasy.states.samples.turnstile;
+package org.jeasy.states.api;
+
+import org.jeasy.states.util.Utils;
 
 import java.util.Date;
 
-import org.jeasy.states.api.EventHandler;
+/**
+ * Abstract class for events to which a FSM should react and make transitions.
+ *
+ * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ */
+public abstract class AbstractEvent implements Event {
 
-class Lock implements EventHandler<PushEvent> {
+    protected String name;
+    protected long timestamp;
 
-    public void handleEvent(PushEvent event) {
-        System.out.println("Notified about event '" + event.getName() + "' triggered at " + new Date(event.getTimestamp()));
-        System.out.println("Locking turnstile..");
+    protected AbstractEvent() {
+        this.name = Utils.DEFAULT_EVENT_NAME;
+        timestamp = System.currentTimeMillis();
+    }
+
+    protected AbstractEvent(final String name) {
+        this.name = name;
+        timestamp = System.currentTimeMillis();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Event" +
+                "{name='" + name + '\'' +
+                ", timestamp=" + new Date(timestamp) +
+                '}';
     }
 
 }

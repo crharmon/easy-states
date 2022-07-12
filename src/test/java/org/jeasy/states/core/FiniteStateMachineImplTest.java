@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
  */
 package org.jeasy.states.core;
 
-import org.jeasy.states.api.Event;
+import org.jeasy.states.api.AbstractEvent;
 import org.jeasy.states.api.EventHandler;
 import org.jeasy.states.api.FiniteStateMachineException;
 import org.jeasy.states.api.State;
@@ -46,11 +46,11 @@ public class FiniteStateMachineImplTest {
 
     private State s1, s2;
     @Mock
-    private EventHandler eventHandler;
+    private EventHandler<MoveEvent> eventHandler;
     private FiniteStateMachineImpl stateMachine;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         s1 = new State("s1");
         s2 = new State("s2");
         Set<State> states = new HashSet<>();
@@ -154,9 +154,10 @@ public class FiniteStateMachineImplTest {
 
         // Then
         Assertions.assertThat(stateMachine.getCurrentState()).isEqualTo(s1);
+        Mockito.verifyNoInteractions(eventHandler);
     }
 
-    private class MoveEvent extends Event { }
+    private static class MoveEvent extends AbstractEvent { }
 
-    private class StayEvent extends Event { }
+    private static class StayEvent extends AbstractEvent { }
 }

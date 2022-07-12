@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
  */
 package org.jeasy.states.core;
 
+import org.jeasy.states.api.Event;
 import org.jeasy.states.api.EventHandler;
 import org.jeasy.states.api.State;
 import org.jeasy.states.api.Transition;
@@ -41,7 +42,7 @@ import org.jeasy.states.api.Transition;
  */
 public class TransitionBuilder {
 
-    private TransitionImpl transition;
+    private final TransitionImpl transition;
 
     /**
      * Create a new {@link TransitionBuilder}.
@@ -85,7 +86,7 @@ public class TransitionBuilder {
      * @param eventType of the transition
      * @return FSM transition builder
      */
-    public TransitionBuilder eventType(final Class eventType) {
+    public TransitionBuilder eventType(final Class<? extends Event> eventType) {
         transition.setEventType(eventType);
         return this;
     }
@@ -95,7 +96,7 @@ public class TransitionBuilder {
      * @param eventHandler of the transition
      * @return FSM transition builder
      */
-    public TransitionBuilder eventHandler(final EventHandler eventHandler) {
+    public <E extends Event> TransitionBuilder eventHandler(final EventHandler<E> eventHandler) {
         transition.setEventHandler(eventHandler);
         return this;
     }

@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import org.junit.Test;
 public class StateTest {
 
     @Test
-    public void whenTwoStatesHaveTheSameName_thenTheyShouldBeEqual() throws Exception {
+    public void whenTwoStatesHaveTheSameName_thenTheyShouldBeEqual() {
         // Given
         State s1 = new State("s1");
         State s2 = new State("s1");
@@ -42,7 +42,7 @@ public class StateTest {
     }
 
     @Test
-    public void whenTwoStatesHaveDifferentNames_thenTheyShouldNotBeEqual() throws Exception {
+    public void whenTwoStatesHaveDifferentNames_thenTheyShouldNotBeEqual() {
         // Given
         State s1 = new State("s1");
         State s2 = new State("s2");

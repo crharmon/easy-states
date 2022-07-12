@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,13 @@
  */
 package org.jeasy.states.samples.turnstile;
 
-import org.jeasy.states.api.Event;
-import org.jeasy.states.api.EventHandler;
-
 import java.util.Date;
 
-class Unlock implements EventHandler {
+import org.jeasy.states.api.EventHandler;
 
-    public void handleEvent(Event event) throws Exception {
+class Unlock implements EventHandler<CoinEvent> {
+
+    public void handleEvent(CoinEvent event) {
         System.out.println("Notified about event '" + event.getName() + "' triggered at " + new Date(event.getTimestamp()));
         System.out.println("Unlocking turnstile..");
     }

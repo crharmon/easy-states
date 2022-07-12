@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,8 @@ package org.jeasy.states.core;
 
 import org.jeasy.states.api.FiniteStateMachine;
 import org.jeasy.states.api.State;
-import org.jeasy.states.api.Transition;
 import org.jeasy.states.util.Utils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 class FiniteStateMachineDefinitionValidator {

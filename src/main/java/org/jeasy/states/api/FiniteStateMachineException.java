@@ -1,7 +1,7 @@
-/**
+/*
  * The MIT License
  *
- *  Copyright (c) 2017, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *  Copyright (c) 2020, Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ package org.jeasy.states.api;
 
 /**
  * Exception thrown if a problem occurs during event handling.
- * This class gives access to the {@link Transition} and {@link Event} related to the exception.
+ * This class gives access to the {@link Transition} and {@link AbstractEvent} related to the exception.
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */
@@ -34,17 +34,17 @@ public class FiniteStateMachineException extends Exception {
     /**
      * The transition where the exception occurred.
      */
-    private Transition transition;
+    private final Transition transition;
 
     /**
      * The event triggered when the exception occurred.
      */
-    private Event event;
+    private final Event event;
 
     /**
      * The root cause of the exception.
      */
-    private Throwable cause;
+    private final Throwable cause;
 
     /**
      * Create a new {@link FiniteStateMachineException}.
